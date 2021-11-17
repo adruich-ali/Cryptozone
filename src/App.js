@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+import React from 'react'
+import {Routes , Route, Link} from 'react-router-dom';
+import {Layout, Typography, Space} from 'antd';
+
+import { Sidebar, Homepage, Exchanges,Cryptocurrencices, CryptoDetails,News } from './components';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ 
+
+const App = () => {
+    return (
+        <div className="app">
+            <div className="navbar">
+                <Sidebar/>
+            </div>
+            <div className="main">
+                <Layout>
+                    <div className="routes">
+                        <Routes>
+                            <Route exact path='/' element={<Homepage />}>
+                                
+                            </Route>
+                            <Route exact path="/exchanges" element={<Exchanges/>}></Route>
+                            <Route exact path="/cryptocurrencies" element={<Cryptocurrencices/>}></Route>
+                            <Route exact path="/crypto/:coinId" element={<CryptoDetails/>}></Route>
+                            <Route exact path="/news" element={<News/>}></Route>
+                        </Routes>
+                    </div>
+                </Layout>
+ 
+            <div className="footer" >
+                    <Typography.Title level={5} style={{color: 'white', textAlign:'center'}}>
+                       <a href="https://www.adruich.com/" target="_blank" rel="noreferrer">Adruich</a>  <br/>
+                    All Rights Reserved
+                    </Typography.Title>
+
+                    <Space>
+                        <Link to="/">Home</Link>   
+                        <Link to="/exchanges">Exchanges</Link>   
+                        <Link to="/news">News</Link>   
+                    </Space>
+                </div>
+            </div>
+        </div>
+    )
 }
 
-export default App;
+export default App
